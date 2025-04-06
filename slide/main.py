@@ -10,6 +10,7 @@ width = 70
 height = 10
 background_color = QColor(255, 0, 0)
 foreground_color = QColor(0, 255, 0)
+cooldown_time_ms = 2000
 
 
 class SignalHandler(QObject):
@@ -31,7 +32,7 @@ class RefreshSquare(QWidget):
 
         self.progress = 1.0
         self.refreshing = False
-        self.duration = 2000
+        self.cooldown = cooldown_time_ms
         self.update_interval = 50
         self.elapsed = 0
 
@@ -61,7 +62,7 @@ class RefreshSquare(QWidget):
 
     def update_progress(self):
         self.elapsed += self.update_interval
-        self.progress = min(self.elapsed / self.duration, 1.0)
+        self.progress = min(self.elapsed / self.cooldown, 1.0)
         self.update()
 
         if self.progress >= 1.0:
