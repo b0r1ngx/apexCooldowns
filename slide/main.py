@@ -19,7 +19,7 @@ class SignalHandler(QObject):
 class RefreshSquare(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Refresh Square")
+        self.setWindowTitle("Slide Cooldown")
 
         screen = QApplication.primaryScreen().geometry()
         x = (screen.width() - width) // 2
