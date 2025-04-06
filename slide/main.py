@@ -8,8 +8,8 @@ from PyQt5.QtGui import QPainter, QColor
 crouch = 'ctrl'
 width = 70
 height = 10
-background_color = QColor(255, 0, 0)
-foreground_color = QColor(0, 255, 0)
+background_color = QColor(255, 121, 91)
+foreground_color = QColor(91, 255, 121)
 cooldown_time_ms = 2000
 
 
