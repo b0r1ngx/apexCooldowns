@@ -51,8 +51,9 @@ class RefreshSquare(QWidget):
         keyboard.wait()  # Keeps the listener running
 
     def start_refresh(self):
-        if self.refreshing:
-            return
+        # use this, if you don't need to refresh when it is in refreshing state
+        # if self.refreshing:
+        #     return
         self.progress = 0.0
         self.elapsed = 0
         self.refreshing = True
