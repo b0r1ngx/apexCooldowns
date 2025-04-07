@@ -11,7 +11,7 @@ height = 10
 background_color = QColor(255, 121, 91)
 foreground_color = QColor(91, 255, 121)
 cooldown_time_ms = 2000
-fps = 60
+fps = 500
 
 
 class SignalHandler(QObject):
