@@ -1,9 +1,7 @@
-import sys
-import threading
-import keyboard
+import os, sys, threading, keyboard
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtCore import Qt, QTimer, QRect, pyqtSignal, QObject
-from PyQt5.QtGui import QPainter, QColor
+from PyQt5.QtGui import QPainter, QColor, QIcon
 
 title = 'Slide Cooldown'
 crouch = 'ctrl'
@@ -23,6 +21,7 @@ class SlideCooldownBar(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle(title)
+        self.setWindowIcon(QIcon('../boringx.ico'))
 
         screen = QApplication.primaryScreen().geometry()
         x = (screen.width() - width) // 2
@@ -85,6 +84,12 @@ class SlideCooldownBar(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    icon_path = getattr(sys, '_MEIPASS', os.path.abspath("."))
+    icon = QIcon(os.path.join(icon_path, "boringx.ico"))
+    app.setWindowIcon(icon)
+
     bar = SlideCooldownBar()
+    bar.setWindowIcon(icon)
     bar.show()
+
     sys.exit(app.exec_())
