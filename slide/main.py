@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtCore import Qt, QTimer, QRect, pyqtSignal, QObject
 from PyQt5.QtGui import QPainter, QColor
 
+title = 'Slide Cooldown'
 crouch = 'ctrl'
 width = 70
 height = 10
@@ -18,10 +19,10 @@ class SignalHandler(QObject):
     trigger_refresh = pyqtSignal()
 
 
-class RefreshSquare(QWidget):
+class SlideCooldownBar(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Slide Cooldown")
+        self.setWindowTitle(title)
 
         screen = QApplication.primaryScreen().geometry()
         x = (screen.width() - width) // 2
@@ -84,6 +85,6 @@ class RefreshSquare(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    square = RefreshSquare()
-    square.show()
+    bar = SlideCooldownBar()
+    bar.show()
     sys.exit(app.exec_())
