@@ -11,6 +11,7 @@ height = 10
 background_color = QColor(255, 121, 91)
 foreground_color = QColor(91, 255, 121)
 cooldown_time_ms = 2000
+fps = 60
 
 
 class SignalHandler(QObject):
@@ -33,7 +34,7 @@ class RefreshSquare(QWidget):
         self.progress = 1.0
         self.refreshing = False
         self.cooldown = cooldown_time_ms
-        self.update_interval = 50
+        self.update_interval = int(1000 / fps)
         self.elapsed = 0
 
         self.timer = QTimer(self)
