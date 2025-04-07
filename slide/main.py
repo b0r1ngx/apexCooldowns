@@ -27,7 +27,7 @@ class RefreshSquare(QWidget):
         y = 3 * (screen.height() - height) // 4
         self.setGeometry(x, y, width, height)
 
-        self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool)
+        self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
 
         self.progress = 1.0
