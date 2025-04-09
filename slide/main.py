@@ -30,7 +30,7 @@ class SlideCooldownBar(QWidget):
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
 
-        self.progress = 1.0
+        self.progress = 1
         self.refreshing = False
         self.cooldown = cooldown_time_ms
         self.update_interval = int(1000 / fps)
@@ -48,17 +48,17 @@ class SlideCooldownBar(QWidget):
         # use this, if you don't need to refresh when it is in refreshing state
         # if self.refreshing:
         #     return
-        self.progress = 0.0
+        self.progress = 0
         self.elapsed = 0
         self.refreshing = True
         self.timer.start(self.update_interval)
 
     def update_progress(self):
         self.elapsed += self.update_interval
-        self.progress = min(self.elapsed / self.cooldown, 1.0)
+        self.progress = min(self.elapsed / self.cooldown, 1)
         self.update()
 
-        if self.progress >= 1.0:
+        if self.progress >= 1:
             self.timer.stop()
             self.refreshing = False
 

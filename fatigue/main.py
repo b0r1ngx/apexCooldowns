@@ -44,7 +44,7 @@ class FatigueCooldownBar(QWidget):
         self.start_listeners()
 
     def refresh(self):
-        self.progress = 1.0
+        self.progress = 1
         self.elapsed = 0
         self.refreshing = True
         self.timer.start(self.update_interval)
@@ -52,10 +52,10 @@ class FatigueCooldownBar(QWidget):
 
     def update_progress(self):
         self.elapsed += self.update_interval
-        self.progress = max(1.0 - (self.elapsed / self.cooldown), 0.0)
+        self.progress = max(1 - (self.elapsed / self.cooldown), 0)
         self.update()
 
-        if self.progress <= 0.0:
+        if self.progress <= 0:
             self.timer.stop()
             self.refreshing = False
 
