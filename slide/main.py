@@ -11,8 +11,8 @@ title = 'Slide Cooldown'
 keys = ('ctrl', 'v')
 width = 70
 height = 10
-background_color = QColor(255, 121, 91)
-foreground_color = QColor(91, 255, 121)
+background_color = QColor(255, 61, 0)
+foreground_color = QColor(0, 255, 118)
 cooldown_time_ms = 2000
 fps = 500
 
