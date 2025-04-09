@@ -1,1 +1,0 @@
-pyinstaller --noconsole --onefile --hidden-import=keyboard --icon=boringx.ico change_to_path/main.py
