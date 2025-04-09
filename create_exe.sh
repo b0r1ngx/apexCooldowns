@@ -1,4 +1,4 @@
-pyinstaller --noconsole --onefile --hidden-import=keyboard --icon=boringx.ico --add-data "boringx.ico;." slide/main.py
+pyinstaller --noconsole --onefile --hidden-import=keyboard --hidden-import=mouse --icon=boringx.ico --add-data "boringx.ico;." main.py
 
 mv dist/main.exe slideCooldown.exe
 

@@ -1,7 +1,7 @@
-import os, sys, threading
+import threading
 
 from PyQt5.QtCore import Qt, QTimer, QRect
-from PyQt5.QtGui import QPainter, QColor, QIcon
+from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QApplication, QWidget
 
 from common.listeners import keyboard_listener, mouse_listener, handle_mouse_wheel_down_event
@@ -20,7 +20,6 @@ class FatigueCooldownBar(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle(title)
-        self.setWindowIcon(QIcon('../boringx.ico'))
 
         screen = QApplication.primaryScreen().geometry()
         x = (screen.width() - width) // 2
@@ -76,16 +75,3 @@ class FatigueCooldownBar(QWidget):
         if fill_width > 0:
             painter.setBrush(foreground_color)
             painter.drawRect(QRect(0, 0, fill_width, self.height()))
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    icon_path = getattr(sys, '_MEIPASS', os.path.abspath("."))
-    icon = QIcon(os.path.join(icon_path, "boringx.ico"))
-    app.setWindowIcon(icon)
-
-    bar = FatigueCooldownBar()
-    bar.setWindowIcon(icon)
-    bar.show()
-
-    sys.exit(app.exec_())
