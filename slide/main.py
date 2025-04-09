@@ -1,20 +1,20 @@
-import os, sys, threading, keyboard
-from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtCore import Qt, QTimer, QRect, pyqtSignal, QObject
+import os, sys, threading
+
+from PyQt5.QtCore import Qt, QTimer, QRect
 from PyQt5.QtGui import QPainter, QColor, QIcon
+from PyQt5.QtWidgets import QApplication, QWidget
+
+from common.listeners import keyboard_listener
+from common.signals import Signals
 
 title = 'Slide Cooldown'
-crouch = 'ctrl'
+keys = ('ctrl', 'v')
 width = 70
 height = 10
 background_color = QColor(255, 121, 91)
 foreground_color = QColor(91, 255, 121)
 cooldown_time_ms = 2000
 fps = 500
-
-
-class SignalHandler(QObject):
-    trigger_refresh = pyqtSignal()
 
 
 class SlideCooldownBar(QWidget):
@@ -40,19 +40,12 @@ class SlideCooldownBar(QWidget):
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_progress)
 
-        # Signal bridge between threads
-        self.signals = SignalHandler()
-        self.signals.trigger_refresh.connect(self.start_refresh)
+        self.signals = Signals()
+        self.signals.ctrl_pressed.connect(self.refresh)
+        self.signals.v_pressed.connect(self.refresh)
+        self.start_listeners()
 
-        # Start key listening thread
-        threading.Thread(target=self.listen_for_ctrl, daemon=True).start()
-
-    def listen_for_ctrl(self):
-        # Use keyboard hook instead of blocking wait
-        keyboard.on_press_key(crouch, lambda _: self.signals.trigger_refresh.emit())
-        keyboard.wait()  # Keeps the listener running
-
-    def start_refresh(self):
+    def refresh(self):
         # use this, if you don't need to refresh when it is in refreshing state
         # if self.refreshing:
         #     return
@@ -69,6 +62,10 @@ class SlideCooldownBar(QWidget):
         if self.progress >= 1.0:
             self.timer.stop()
             self.refreshing = False
+
+    def start_listeners(self):
+        for key in keys:
+            threading.Thread(target=keyboard_listener, args=(key, self.signals), daemon=True).start()
 
     def paintEvent(self, event):
         painter = QPainter(self)
