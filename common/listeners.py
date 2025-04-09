@@ -14,5 +14,5 @@ def mouse_listener(event: callable):
 
 
 def handle_mouse_wheel_down_event(event, signals: Signals):
-    if event.event_type == 'wheel' and event.delta < 0:
+    if isinstance(event, mouse.WheelEvent) and event.delta < 0:
         signals.wheel_down.emit()
