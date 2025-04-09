@@ -46,8 +46,8 @@ class SlideCooldownBar(QWidget):
 
     def refresh(self):
         # use this, if you don't need to refresh when it is in refreshing state
-        # if self.refreshing:
-        #     return
+        if self.refreshing:
+            return
         self.progress = 0
         self.elapsed = 0
         self.refreshing = True
