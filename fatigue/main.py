@@ -11,7 +11,7 @@ title = 'Fatigue Cooldown'
 jump = 'space'
 width = 70
 height = 10
-foreground_color = QColor(255, 244, 104)  # 200, 200, 70
+foreground_color = QColor(255, 244, 104)
 cooldown_time_ms = 2000
 fps = 500
 
