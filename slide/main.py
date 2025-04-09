@@ -64,7 +64,11 @@ class SlideCooldownBar(QWidget):
 
     def start_listeners(self):
         for key in keys:
-            threading.Thread(target=keyboard_listener, args=(key, self.signals), daemon=True).start()
+            if key == 'ctrl':
+                signal = self.signals.ctrl_pressed
+            else:
+                signal = self.signals.v_pressed
+            threading.Thread(target=keyboard_listener, args=(key, signal), daemon=True).start()
 
     def paintEvent(self, event):
         painter = QPainter(self)

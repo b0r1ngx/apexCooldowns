@@ -60,7 +60,7 @@ class FatigueCooldownBar(QWidget):
             self.refreshing = False
 
     def start_listeners(self):
-        threading.Thread(target=keyboard_listener, args=(jump, self.signals), daemon=True).start()
+        threading.Thread(target=keyboard_listener, args=(jump, self.signals.space_pressed), daemon=True).start()
 
         def handle_mwheeldown_event(event):
             handle_mouse_wheel_down_event(event, self.signals)
