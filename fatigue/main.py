@@ -29,7 +29,7 @@ class FatigueCooldownBar(QWidget):
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
 
-        self.progress = 1.0
+        self.progress = 0
         self.refreshing = False
         self.cooldown = cooldown_time_ms
         self.update_interval = int(1000 / fps)
